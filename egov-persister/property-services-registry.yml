@@ -1,0 +1,203 @@
+serviceMaps:
+  serviceName: property-services
+  mappings:
+  - version: 1.0
+    description: Persists property details in EG_PT_PROPERTY  table
+    fromTopic: save-property-registry
+    isTransaction: true
+    queryMaps:
+
+
+    - query: INSERT INTO pt_property_audit (audituuid, assesee_no, property, auditcreatedtime) VALUES ((select nextval('seq_eg_pt_registry_audit')), ?, ?, NOW());
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.propertyId
+
+      - jsonPath: $.Property
+        type: JSON
+        dbType: JSONB
+
+    - query: INSERT INTO pt_property_mst (id, assesee_no, tenantid, surveyid, accountid, ward_no, office_code, premise_type, premises_no, street_code, effective_qtr, property_type, person_liable_tax, mobile_no, status, assesee_linked, uaa_converted,  withheld_flg, legal_case_yn, legal_desc, exemption_applied, exemption_rate, exemption_till,appd_flag,appd_share,mother_assno,mother_prem_no,acknowldgementnumber,ownershipcategory,usagecategory,creationreason,linkedproperties,source,channel,createdby,lastmodifiedby,createdtime,lastmodifiedtime,additionaldetails) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),NOW(),?);
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.id
+
+      - jsonPath: $.Property.propertyId
+
+      - jsonPath: $.Property.tenantId
+
+      - jsonPath: $.Property.surveyId
+
+      - jsonPath: $.Property.accountId
+
+      - jsonPath: $.Property.ward
+
+      - jsonPath: $.Property.officeCode
+
+      - jsonPath: $.Property.premisesType
+
+      - jsonPath: $.Property.premisesNo
+
+      - jsonPath: $.Property.street
+
+      - jsonPath: $.Property.taxdetails.effectiveQtr
+
+      - jsonPath: $.Property.propertyType
+
+      - jsonPath: $.Property.personLiableTax
+
+      - jsonPath: $.Property.owners.*.mobileNumber
+
+      - jsonPath: $.Property.status
+
+      - jsonPath: $.Property.linkedUserId
+        type: ARRAY
+        dbType: STRING
+        
+      - jsonPath: $.Property.uaaConverted
+      
+      - jsonPath: $.Property.withHeldFlag
+      
+      - jsonPath: $.Property.legalCaseYn
+      
+      - jsonPath: $.Property.legalDesc
+      
+      - jsonPath: $.Property.excemptionApplied
+      
+      - jsonPath: $.Property.exemptionRate
+      
+      - jsonPath: $.Property.excemptionTill
+      
+      - jsonPath: $.Property.aapdFlag
+      
+      - jsonPath: $.Property.appdShare
+      
+      - jsonPath: $.Property.motherAssesseeNo
+      
+      - jsonPath: $.Property.motherPremiseNo
+      
+      - jsonPath: $.Property.acknowldgementNumber
+      
+      - jsonPath: $.Property.ownershipCategory
+      
+      - jsonPath: $.Property.usageCategory
+      
+      - jsonPath: $.Property.creationReason
+      
+      - jsonPath: $.Property.linkedProperties
+      
+      - jsonPath: $.Property.source
+      
+      - jsonPath: $.Property.channel
+
+      - jsonPath: $.Property.auditDetails.createdBy
+      
+      - jsonPath: $.Property.auditDetails.lastModifiedBy
+
+      - jsonPath: $.Property.additionalDetails
+        type: JSON
+        dbType: JSONB
+
+
+    - query: INSERT INTO pt_owner(ownerinfouuid, tenantid, propertyid, assesee_no, tmp_assesee_no, ward_no, userid, status, owner_name, owner_address, pincode, guirdain_name, police_station, dob, mobile,alter_mobileno,email_id, relationship, createdby, createdtime, lastmodifiedby, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, NOW());
+      basePath: Property.owners.*
+      jsonMaps:
+
+      - jsonPath: $.Property.*.ownerInfoUuid
+
+      - jsonPath: $.Property.tenantId
+
+      - jsonPath: $.Property.id
+      
+      - jsonPath: $.Property.propertyId
+      
+      - jsonPath: $.Property.tempPropertyId
+      
+      - jsonPath: $.Property.ward
+
+      - jsonPath: $.Property.owners.*.uuid
+
+      - jsonPath: $.Property.owners.*.status
+
+      - jsonPath: $.Property.owners.*.name
+
+      - jsonPath: $.Property.owners.*.permanentAddress
+
+      - jsonPath: $.Property.owners.*.pincode
+
+      - jsonPath: $.Property.owners.*.fatherOrHusbandName
+
+      - jsonPath: $.Property.owners.*.policeStation
+      
+      - jsonPath: $.Property.owners.*.dob
+      
+      - jsonPath: $.Property.owners.*.mobileNumber
+      
+      - jsonPath: $.Property.owners.*.alternatemobilenumber
+      
+      - jsonPath: $.Property.owners.*.emailId
+      
+      - jsonPath: $.Property.owners.*.relationship
+
+      - jsonPath: $.Property.auditDetails.createdBy
+
+      - jsonPath: $.Property.auditDetails.lastModifiedBy
+     
+    - query: INSERT INTO pt_tax_details(id, tenantid, assesee_no, tmp_assesee_no, ward_no, effective_qtr, proposed_qtr, av, comm_av, reasonable_rent, rate, comm_rate, hbt_amt, srg_amt, rebate_amt,qtrly_amt,payable_amt, net_amt,uaa_converted,uaa_saf_no,uncapped_tax,uncapped_hbt,capping_method, createdby, createdtime, lastmodifiedby, lastmodifiedtime,property_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?);
+      basePath: Property.taxdetails
+      jsonMaps:
+
+      - jsonPath: $.Property.taxdetails.id
+
+      - jsonPath: $.Property.tenantId
+      
+      - jsonPath: $.Property.propertyId
+      
+      - jsonPath: $.Property.tempPropertyId
+      
+      - jsonPath: $.Property.ward
+
+      - jsonPath: $.Property.taxdetails.effectiveQtr
+
+      - jsonPath: $.Property.taxdetails.proposedQtr
+
+      - jsonPath: $.Property.taxdetails.av
+
+      - jsonPath: $.Property.taxdetails.commAv
+
+      - jsonPath: $.Property.taxdetails.reasonableRent
+
+      - jsonPath: $.Property.taxdetails.rate
+
+      - jsonPath: $.Property.taxdetails.commRate
+      
+      - jsonPath: $.Property.taxdetails.hbtAmount
+      
+      - jsonPath: $.Property.taxdetails.surcharge
+      
+      - jsonPath: $.Property.taxdetails.rebateAmount
+      
+      - jsonPath: $.Property.taxdetails.quateryAmount
+      
+      - jsonPath: $.Property.taxdetails.paybleAmount
+      
+      - jsonPath: $.Property.taxdetails.netAmount
+      
+      - jsonPath: $.Property.taxdetails.uaaConverted
+      
+      - jsonPath: $.Property.taxdetails.safNo
+      
+      - jsonPath: $.Property.taxdetails.uncappedTax
+      
+      - jsonPath: $.Property.taxdetails.uncappedHbt
+      
+      - jsonPath: $.Property.taxdetails.cappingMethod
+      
+      - jsonPath: $.Property.auditDetails.createdBy
+
+      - jsonPath: $.Property.auditDetails.lastModifiedBy
+
+      - jsonPath: $.Property.id
+      

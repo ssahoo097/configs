@@ -1,0 +1,218 @@
+{
+  "key": "occupancy-certificate",
+  "config": {
+    "defaultStyle": {
+      "font": "Cambay"
+    },
+    "content": [      
+      {
+        "columns": [
+	{
+		"image": "{{logoImageMdms}}",
+		"width": 70,
+		"height": 70,
+		"alignment": "left"
+		},
+          {
+            "stack": [
+              {
+                "text": "FORM - V"
+              },
+              {
+                "text": "See Rule 18(4)"
+              },
+              {
+                "text": "{{tenantName}} {{ulb_grade}}, {{tenantName}}",
+				"bold": false
+              },
+			  {
+                "text": "  "
+              },
+              {
+                "text": "Occupancy Certificate"
+              },
+              {
+                "text": "No. {{planPermissionNo}}, Date: {{orderGeneratedOn}}",
+				"bold" : false,
+				"alignment" : "center"
+              }
+            ],
+            "style": "header",
+			"margin": [
+                  -70,
+                  0,
+                  0,
+                  0
+                ]
+          }
+        ]
+      },
+      {
+        "text": [
+          {
+            "text": "     The work of erection, re-erection  and or  material alteration undertaken in respect of {{floorInfo}} {{subOccupancy}} Building ",
+			"preserveLeadingSpaces": true
+          },
+          {
+            "text": ", Plot No. {{plotNo}} "
+          },
+          {
+            "text": " Village/Mouza {{village}}"
+          },
+          {
+            "text": " has been completed under the supervision of "
+          },
+          {
+            "text": "{{architectName}} Architect"
+          },
+          {
+            "text": " (Empanelment No. NA)"
+          },
+          {
+            "text": " as per the completion certificate submitted."
+          }
+        ],
+        "style": "top-margin"
+      },
+	  {
+        "text": [
+		  {
+            "text" : "     On inspection it is observed that the erection, re-erection and  or alteration undertaken with respect to above {{floorInfo}} {{subOccupancy}} (Building) is in accordance with approved plan and the conditions imposed vide",
+			"preserveLeadingSpaces": true
+          },
+		  {
+            "text" : " Permission letter No. {{buildingPermitNumber}}"
+          },
+		  {
+            "text" : " dt {{permitApplicationDate}}."
+          }
+        ],
+        "style": "top-margin"
+      },
+	  {
+        "columns": [
+		{"stack":[
+		  {
+            "text" : "The building is permitted for part/full occupancy subjected to the following:",
+			"preserveLeadingSpaces": true
+          },
+		  {
+            "text" : "1. All physical infrastructures like water supply, sewerage and drainage system and water harvesting structures shall be maintained",
+			"preserveLeadingSpaces": true
+          },
+		  {
+            "text" : "2. At least 80 sqm per one tree of the land area shall be developed for plantation and landscaping and maintained",
+			"preserveLeadingSpaces": true
+          },
+		  {
+            "text" : "3. Periodic inspection shall be made by the Fire Authority to ensure the fire safety of the building and compliance with the provisions of fire and life safety requirement (Fire and Lift Safety Part-4 of NBC). ",
+			"preserveLeadingSpaces": true
+          },
+		  {
+            "text" : "4. The building shall not be put to any other use other than the purpose for which the permission is accorded",
+			"preserveLeadingSpaces": true
+          },
+		  {
+            "text": "  "
+          },
+		  {
+            "text" : "Additional Conditions-",
+            "bold" : true
+          },
+		  {
+            "text" : "{{approverNote}}",
+            "preserveLeadingSpaces": true
+          }
+        ]}],
+        "style": "top-margin",
+		"margin": [
+          40,
+          0,
+          0,
+          0
+        ]
+      },
+	  {
+        "text": [
+		  {
+            "text" : "     One set of completion plans duly certified for occupancy is returned herewith.",
+			"preserveLeadingSpaces": true
+          }
+        ],
+        "style": "top-margin"
+      },
+      {
+        "columns": [
+          {
+            "stack": [
+              {
+                "text": "Date - {{orderGeneratedOn}}"
+              }
+            ],
+            "alignment": "left",
+            "width": "*"
+          },
+          {
+            "text": [
+              {
+                "text": "BY ORDER OF {{approvedBy}}"
+              }
+            ],
+            "alignment": "right",
+            "width": "auto"
+          }
+        ],
+        "style": "top-high-margin"
+      },
+	  {
+            "stack": [
+              {
+                "text": "Authorised Officer"
+              },
+			  {
+                "text": "{{tenantName}} {{ulb_grade}}"
+              },
+			  {
+                "text": "(Seal)"
+              }
+            ],
+            "alignment": "right",
+            "width": "*"
+	  }
+    ],
+    "footer": "(function(currentPage, pageCount) { return currentPage.toString() + ' of ' + pageCount; })",
+    "styles": {
+      "header": {
+        "bold": true,
+        "alignment": "center"
+      },
+      "top-margin": {
+        "margin": [
+          0,
+          10,
+          0,
+          0
+        ],
+        "fontSize": 10
+      },
+      "top-high-margin": {
+        "margin": [
+          0,
+          50,
+          0,
+          0
+        ],
+        "fontSize": 10
+      },
+	  "top-approverNote-margin": {
+        "margin": [
+          0,
+          20,
+          0,
+          0
+        ],
+        "fontSize": 10
+      }
+    }
+  }
+}

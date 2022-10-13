@@ -1,0 +1,60 @@
+serviceMaps:
+ serviceName: Meter Connection Service
+ mappings:
+ - version: 1.0
+   name: MeterConnection
+   description: create meter reading for particular connection number
+   fromTopic: save-ws-meter
+   isTransaction: true
+   queryMaps:
+    - query: INSERT INTO eg_ws_meterreading (id,tenantid,connectionNo,billingPeriod, meterStatus, lastReading, lastReadingDate, currentReading, currentReadingDate, createdby, lastmodifiedby, createdtime, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?);
+      basePath: $.meterReadings
+      jsonMaps:
+       - jsonPath: $.meterReadings.id
+       
+       - jsonPath: $.meterReadings.tenantId
+
+       - jsonPath: $.meterReadings.connectionNo
+
+       - jsonPath: $.meterReadings.billingPeriod
+       
+       - jsonPath: $.meterReadings.meterStatus
+
+       - jsonPath: $.meterReadings.lastReading
+       
+       - jsonPath: $.meterReadings.lastReadingDate
+
+       - jsonPath: $.meterReadings.currentReading
+
+       - jsonPath: $.meterReadings.currentReadingDate
+       
+       - jsonPath: $.meterReadings.auditDetails.createdBy
+
+       - jsonPath: $.meterReadings.auditDetails.lastModifiedBy
+
+       - jsonPath: $.meterReadings.auditDetails.createdTime
+
+       - jsonPath: $.meterReadings.auditDetails.lastModifiedTime
+
+ - version: 1.0
+   name: MeterConnection
+   description: update meter reading for particular meter reading
+   fromTopic: update-ws-meter
+   isTransaction: true
+   queryMaps:
+    - query: update eg_ws_meterreading set billingperiod=?, meterstatus=?, currentreading=?, currentreadingdate=?, lastmodifiedby=?, lastmodifiedtime=? where id=?;
+      basePath: $.meterReadings
+      jsonMaps:
+       - jsonPath: $.meterReadings.billingPeriod
+       
+       - jsonPath: $.meterReadings.meterStatus
+
+       - jsonPath: $.meterReadings.currentReading
+
+       - jsonPath: $.meterReadings.currentReadingDate
+       
+       - jsonPath: $.meterReadings.auditDetails.lastModifiedBy
+
+       - jsonPath: $.meterReadings.auditDetails.lastModifiedTime
+
+       - jsonPath: $.meterReadings.id

@@ -1,0 +1,532 @@
+{
+   "key":"bpa-revocation-notice",
+   "config":{
+      "defaultStyle":{
+         "font":"Roboto",
+         "fontSize":12,
+         "color":"#484848",
+         "lineHeight":1
+      },
+      "content":[
+         {
+            "style":"bp-head",
+            "table":{
+               "widths":[
+                  50,
+                  "*",
+                  100
+               ],
+               "body":[
+                  [
+                     {
+                        "image":"{{BDA}}",
+                        "width":60,
+                        "height":60,
+                        "margin":[
+                           45,
+                           5,
+                           5,
+                           5
+                        ]
+                     },
+                     {
+                        "stack":[
+                           {
+						   "text":"{{address}}",
+                              "style":"sub-header"
+                           }
+                           
+                        ],
+                        "alignment":"center",
+                        "font":"Roboto",
+                        "margin":[
+                           56,
+                           10,
+                           0,
+                           0
+                        ]
+                     },
+                     {
+                        "stack":[
+                           {
+                              "text":"  "
+                           }
+                        ],
+                        "margin":[
+                           56,
+                           5,
+                           0,
+                           0
+                        ]
+                     }
+                  ]
+               ]
+            },
+            "layout":"noBorders"
+         },
+         {
+            "columns":[
+               {
+                  "text":[
+                     {
+                        "text":"Letter No. ",
+                        "bold":false
+                     },
+                     {
+                        "text":"{{aplicationid}}, "
+                     },
+                     {
+                        "text":"/{{code}}           ",
+                        "bold":false
+                     },
+                     {
+                        "text":"                 Dated:",
+                        "bold":false
+                     },
+                     {
+                        "text":" {{signDate}}"
+                     }
+                  ],
+                  "width":"*"
+               }
+            ],
+            "style":"top-high-margin"
+         },
+         {
+            "columns":[
+               {
+                  "text":[
+                     {
+                        "text":"OBPS (SUJOG) Application No: ",
+                        "bold":true
+                     },
+                     {
+                        "text":"{{applicationNo}}"
+                     }
+                  ],
+                  "alignment":"center",
+                  "width":"*"
+               }
+            ],
+            "style":"top-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":"To,"
+               }
+            ],
+            "style":"top-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":"{{ownerName}}"
+               }
+            ]
+         },
+         {
+            "text":[
+               {
+                  "text":"{{owneraddress}}"
+               }
+            ]
+         },
+         {
+            "text":[
+               {
+                  "text":"{{ownercontact}}"
+               }
+            ]
+         },
+         {
+            "text":[
+          {
+            "text": " Sub:    Revocation/Cancellation of permission granted under Sub-Section(3) of Section ",
+			"bold": true
+          }
+		  
+
+
+            ],
+            "style":"top-margin"
+         },
+		  {
+            "text":[
+ 
+		  
+
+               {
+                  "text":"           16 of ODA Act 1982",
+                  "bold":true
+               }
+            ],
+            "style":"small-text-no-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":" Ref:   1. Your OBPS (SUJOG) Application {{applicationNo}}  Dated ",
+                  "bold":true
+               },
+               {
+                  "text":"{{applicationDate}} ",
+                  "bold":true
+               }
+            ],
+            "style":"top-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":"           2. Permission Letter No. ",
+                  "bold":true
+               },
+               {
+                  "text":"{{approvalNo}} ",
+                  "bold":true
+               },
+               {
+                  "text":"/{{code}}   Dated: ",
+                  "bold":true
+               },
+               {
+                  "text":"{{approvalDate}} ",
+                  "bold":true
+               }
+            ],
+            "alignment":"left-center",
+            "style":"top-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":"           3. Revocation Show Cause Notice No.  ",
+                  "bold":true
+               },
+               {
+                  "text":"{{letterno}} ",
+                  "bold":true
+               },
+               {
+                  "text":"/{{code}}   Dated: ",
+                  "bold":true
+               },
+               {
+                  "text":"             {{createdTime}} ",
+                  "bold":true
+               }
+            ],
+            "alignment":"left-center",
+            "style":"top-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":" (I)    Whereas, permission for construction of "
+               },
+               {
+                  "text":" {{floorInfo}} "
+               },
+               {
+                  "text":"storied "
+               },
+               {
+                  "text":"{{subOccupancy}} "
+               }
+            ],
+            "style":"top-margin-high"
+         },
+         {
+            "text":[
+               {
+                  "text":"         building was granted under Sub-Section (3) of Section 16 of ODA Act 1982 vide "
+               }
+            ],
+            "style":"small-text-no-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":"         letter no. "
+               },
+               {
+                  "text":"{{approvalNo}}, "
+               },
+               {
+                  "text":"   dated : "
+               },
+               {
+                  "text":"{{approvalDate}} "
+               }
+            ],
+            "style":"small-text-no-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":" (II)    Whereas, it is evident that the aforesaid permission was accorded in consequence "
+               }
+            ],
+            "style":"top-margin-high"
+         },
+         {
+            "text":[
+               {
+                  "text":"          of material misrepresentation/ fraudulent statement contained in your application "
+               }
+            ],
+            "style":"small-text-no-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":"          number  "
+               },
+               {
+                  "text":"{{applicationNo}}, "
+               },
+               {
+                  "text":"   dated : "
+               },
+               {
+                  "text":"{{applicationDate}} "
+               },
+               {
+                  "text":" which has been specified  "
+               }
+            ],
+            "style":"small-text-no-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":"          herein after. "
+               }
+            ],
+            "style":"small-text-no-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":" (III)    Whereas, you have been intimated to show cause as to why the permission so  "
+               }
+            ],
+            "style":"top-margin-high"
+         },
+         {
+            "text":[
+               {
+                  "text":"           issued shall not be revoked/ cancelled."
+               }
+            ],
+            "style":"small-text-no-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":" (IV)   And Whereas, you have failed to show any cause in response to this office letter  "
+               }
+            ],
+            "style":"top-margin-high"
+         },
+         {
+            "text":[
+               {
+                  "text":"          no.  "
+               },
+			   {
+                  "text":"  {{letterno}}, "
+               },
+               {
+                  "text":"/{{code}} dated : "
+               },
+               {
+                  "text":"{{createdTime}} "
+               },
+			   {
+                  "text":"  /  ",
+				  "bold":true
+               },
+               {
+                  "text":"your reply to the show  "
+               }
+            ],
+            "style":"small-text-no-margin"
+         },
+         {
+            "text":[
+               {
+                  "text":"          cause letter no. {{letterno}}, "
+               },
+               {
+                  "text":"/{{code}} dated : "
+               },
+               {
+                  "text":"{{createdTime}} "
+               },
+               {
+                  "text":"  has not    "
+               }
+            ],
+            "style":"small-text-no-margin"
+         },
+		 {
+            "text":[
+               {
+                  "text":"          been found to be satisfactory."
+               }
+            ],
+            "style":"small-text-no-margin"
+         },
+		 
+         {
+            "text":[
+               {
+                  "text":"        Hence, in exercise of the provisions prescribed under Section 17 of the ODA Act 1982, the"
+               }
+            ],
+            "style":"top-margin-high"
+         },
+         {
+            "text":[
+               {
+                  "text":"        permission issued vide letter no. "
+               },
+               {
+                  "text":"{{approvalNo}}, "
+               },
+               {
+                  "text":"/{{code}} dated : "
+               },
+			    {
+                  "text":" {{approvalDate}} "
+               }
+               
+            ],
+            "style":"small-text-no-margin"
+         },
+		 {
+            "text":[
+              
+               {
+                  "text":"        for construction over Plot number "
+               },
+               {
+                  "text":" {{plotNo}},"
+               },
+			    {
+                  "text":" Khata no  "
+               },
+			   {
+                  "text":"{{khataNo}}, "
+               },
+			   {
+                  "text":" Mouza  "
+               },
+			   {
+                  "text":" {{mauza}} "
+               },
+			    {
+                  "text":"  is hereby "
+               }
+               
+            ],
+            "style":"small-text-no-margin"
+         },
+         {
+            "text":[
+
+            
+               
+			   {
+                  "text":"        revoked on the following grounds"
+               }
+            ],
+            "style":"small-text-no-margin"
+         },
+         
+         {
+            "text":[
+               {
+                  "text":"                         {{comment}}"
+               }
+            ],
+            "style":"top-margin"
+         }
+
+        
+        
+      ],
+      "styles":{
+         "bp-head":{
+            "fillColor":"#9ED0FA",
+            "margin":[
+               -41,
+               -41,
+               -41,
+               0
+            ]
+         },
+         "header":{
+            "bold":true,
+            "alignment":"center",
+            "fontSize":16,
+            "letterSpacing":0.74
+         },
+         "sub-header":{
+            "bold":true,
+            "alignment":"center",
+            "fontSize":16,
+            "letterSpacing":1.6,
+            "margin":[
+               
+            ]
+         },
+         "top-margin":{
+            "preserveLeadingSpaces":true,
+            "margin":[
+               0,
+               10,
+               0,
+               0
+            ]
+         },
+         "top-margin-high":{
+            "preserveLeadingSpaces":true,
+            "margin":[
+               0,
+               30,
+               0,
+               0
+            ]
+         },
+         "top-margin-small":{
+            "fontSize":10,
+            "margin":[
+               0,
+               10,
+               0,
+               0
+            ]
+         },
+         "small-text-no-margin":{
+            "preserveLeadingSpaces":true,
+            "margin":[
+               0,
+               7,
+               0,
+               0
+            ]
+         },
+         "top-high-margin":{
+            "margin":[
+               0,
+               5,
+               0,
+               0
+            ]
+         }
+      }
+   }
+}
