@@ -3,7 +3,7 @@ serviceMaps:
   mappings:
   - version: 1.0
     description: Persists property details in EG_PT_PROPERTY  table
-    fromTopic: update-property-registry
+    fromTopic: save-property-registry
     isTransaction: true
     queryMaps:
 
@@ -22,11 +22,13 @@ serviceMaps:
         
        
 
-    - query: INSERT INTO pt_property_mst (id, assesee_no, tenantid, surveyid, accountid, ward_no, office_code, premise_type, premises_no, street_code,effective_qtr, property_type, person_liable_tax, mobile_no, status, assesee_linked, uaa_converted,  withheld_flg, legal_case_yn, legal_desc, exemption_applied, exemption_rate, exemption_till,appd_flag,appd_share,mother_assno,mother_prem_no,acknowldgementnumber,ownershipcategory,usagecategory,creationreason,linkedproperties,source,channel,createdby,lastmodifiedby,createdtime,lastmodifiedtime,additionaldetails, inspection_type, tmp_assesee_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),NOW(),?,?,?);
+    - query: INSERT INTO pt_property_tmp (id, tmp_assesee_no, assesee_no, tenantid, surveyid, accountid, ward_no, office_code, premise_type, premises_no, street_code, property_type, person_liable_tax, mobile_no, status, assesee_linked, uaa_converted,  withheld_flg, legal_case_yn, legal_desc, exemption_applied, exemption_rate, exemption_till,appd_flag,appd_share,mother_assno,mother_prem_no,acknowldgementnumber,ownershipcategory,usagecategory,creationreason,linkedproperties,source,channel,createdby,lastmodifiedby,createdtime,lastmodifiedtime,additionaldetails, inspection_type,hearing_status,hearing_notice_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),NOW(),?,?,?,?);
       basePath: Property
       jsonMaps:
 
       - jsonPath: $.Property.id
+
+      - jsonPath: $.Property.acknowldgementNumber
       
       - jsonPath: $.Property.assesseeNo
 
@@ -45,8 +47,6 @@ serviceMaps:
       - jsonPath: $.Property.premisesNo
 
       - jsonPath: $.Property.street
-      
-      - jsonPath: $.Property.taxdetails.effectiveQtr
 
       - jsonPath: $.Property.propertyType
 
@@ -105,7 +105,10 @@ serviceMaps:
         dbType: JSONB
         
       - jsonPath: $.Property.inspectionType
-      - jsonPath: $.Property.tmpAssesseeNo
+      
+      - jsonPath: $.Property.hearingStatus
+      
+      - jsonPath: $.Property.hearingNoticeNo
 
 
     - query: INSERT INTO pt_owner(ownerinfouuid, tenantid, propertyid, assesee_no, tmp_assesee_no, ward_no, userid, status, owner_name, owner_address, pincode, guirdain_name, police_station, dob, mobile,alter_mobileno,email_id, relationship, createdby, createdtime, lastmodifiedby, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, NOW());
@@ -126,7 +129,7 @@ serviceMaps:
 
       - jsonPath: $.Property.owners.*.uuid
 
-      - jsonPath: $.Property.status
+      - jsonPath: $.Property.owners.*.status
 
       - jsonPath: $.Property.owners.*.name
 
@@ -151,7 +154,107 @@ serviceMaps:
       - jsonPath: $.Property.auditDetails.createdBy
 
       - jsonPath: $.Property.auditDetails.lastModifiedBy
-     
+      
+    - query: INSERT INTO pt_registration_details(id, tenantid, assesee_no, tmp_assesee_no, ward_no, dag_no, khatian_no, mouza_no, query_No, query_Year, deed_no, deed_year, location, ro, book, createdby, createdtime, lastmodifiedby, lastmodifiedtime,property_id,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?,?);
+      basePath: Property.registrationDetails
+      jsonMaps:
+
+      - jsonPath: $.Property.registrationDetails.id
+
+      - jsonPath: $.Property.tenantId
+      
+      - jsonPath: $.Property.assesseeNo
+      
+      - jsonPath: $.Property.acknowldgementNumber
+      
+      - jsonPath: $.Property.ward
+
+      - jsonPath: $.Property.registrationDetails.dag
+
+      - jsonPath: $.Property.registrationDetails.khatian
+
+      - jsonPath: $.Property.registrationDetails.mouza
+
+      - jsonPath: $.Property.registrationDetails.queryNo
+
+      - jsonPath: $.Property.registrationDetails.queryYear
+
+      - jsonPath: $.Property.registrationDetails.deedNo
+
+      - jsonPath: $.Property.registrationDetails.deedYear
+      
+      - jsonPath: $.Property.registrationDetails.location
+      
+      - jsonPath: $.Property.registrationDetails.ro
+      
+      - jsonPath: $.Property.registrationDetails.book
+            
+      - jsonPath: $.Property.auditDetails.createdBy
+
+      - jsonPath: $.Property.auditDetails.lastModifiedBy
+
+      - jsonPath: $.Property.id
+      
+      - jsonPath: $.Property.registrationDetails.status
+      
+    - query: INSERT INTO pt_building_details(id, tenantid, assesee_no, tmp_assesee_no, ward_no, plan_case_no, building_type, no_of_stories, flat_no, occupancy_status, heritage_id, pond_id, plot_area, covered_area, parking_area, common_area, createdby, createdtime, lastmodifiedby, lastmodifiedtime,status,characterofpremises,acre,bigha,cottah,chatak,sqmt,sqft,property_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?,?,?,?,?,?,?,?,?);
+      basePath: Property.buildingdetails
+      jsonMaps:
+
+      - jsonPath: $.Property.buildingdetails.id
+
+      - jsonPath: $.Property.tenantId
+      
+      - jsonPath: $.Property.assesseeNo
+      
+      - jsonPath: $.Property.acknowldgementNumber
+      
+      - jsonPath: $.Property.ward
+
+      - jsonPath: $.Property.buildingdetails.planCaseNo
+
+      - jsonPath: $.Property.buildingdetails.buildingType
+
+      - jsonPath: $.Property.buildingdetails.numberOfStories
+
+      - jsonPath: $.Property.buildingdetails.flatNo
+
+      - jsonPath: $.Property.buildingdetails.occupancyStatus
+
+      - jsonPath: $.Property.buildingdetails.heritageId
+
+      - jsonPath: $.Property.buildingdetails.pondId
+      
+      - jsonPath: $.Property.buildingdetails.plotArea
+      
+      - jsonPath: $.Property.buildingdetails.coveredArea
+      
+      - jsonPath: $.Property.buildingdetails.parkingArea
+      
+      - jsonPath: $.Property.buildingdetails.commonArea
+            
+      - jsonPath: $.Property.auditDetails.createdBy
+
+      - jsonPath: $.Property.auditDetails.lastModifiedBy
+      
+      - jsonPath: $.Property.buildingdetails.status
+      
+      - jsonPath: $.Property.buildingdetails.characterofPremises
+      
+      - jsonPath: $.Property.buildingdetails.acre
+      
+      - jsonPath: $.Property.buildingdetails.bigha
+      
+      - jsonPath: $.Property.buildingdetails.cottah
+      
+      - jsonPath: $.Property.buildingdetails.chatak
+      
+      - jsonPath: $.Property.buildingdetails.sqMt
+      
+      - jsonPath: $.Property.buildingdetails.sqFt
+      
+      - jsonPath: $.Property.id
+      
     - query: INSERT INTO pt_tax_details(id, tenantid, assesee_no, tmp_assesee_no, ward_no, effective_qtr, proposed_qtr, av, comm_av, reasonable_rent, rate, comm_rate, hbt_amt, srg_amt, rebate_amt,qtrly_amt,payable_amt, net_amt,uaa_converted,uaa_saf_no,uncapped_tax,uncapped_hbt,capping_method, createdby, createdtime, lastmodifiedby, lastmodifiedtime,property_id,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?,?);
       basePath: Property.taxdetails
       jsonMaps:
@@ -208,107 +311,7 @@ serviceMaps:
 
       - jsonPath: $.Property.id
       
-      - jsonPath: $.Property.status
-      
-    - query: INSERT INTO pt_registration_details(id, tenantid, assesee_no, tmp_assesee_no, ward_no, dag_no, khatian_no, mouza_no, query_No, query_Year, deed_no, deed_year, location, ro, book, createdby, createdtime, lastmodifiedby, lastmodifiedtime,property_id,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?,?);
-      basePath: Property.registrationDetails
-      jsonMaps:
-
-      - jsonPath: $.Property.registrationDetails.id
-
-      - jsonPath: $.Property.tenantId
-      
-      - jsonPath: $.Property.assesseeNo
-      
-      - jsonPath: $.Property.acknowldgementNumber
-      
-      - jsonPath: $.Property.ward
-
-      - jsonPath: $.Property.registrationDetails.dag
-
-      - jsonPath: $.Property.registrationDetails.khatian
-
-      - jsonPath: $.Property.registrationDetails.mouza
-
-      - jsonPath: $.Property.registrationDetails.queryNo
-
-      - jsonPath: $.Property.registrationDetails.queryYear
-
-      - jsonPath: $.Property.registrationDetails.deedNo
-
-      - jsonPath: $.Property.registrationDetails.deedYear
-      
-      - jsonPath: $.Property.registrationDetails.location
-      
-      - jsonPath: $.Property.registrationDetails.ro
-      
-      - jsonPath: $.Property.registrationDetails.book
-            
-      - jsonPath: $.Property.auditDetails.createdBy
-
-      - jsonPath: $.Property.auditDetails.lastModifiedBy
-
-      - jsonPath: $.Property.id
-      
-      - jsonPath: $.Property.status
-      
-    - query: INSERT INTO pt_building_details(id, tenantid, assesee_no, tmp_assesee_no, ward_no, plan_case_no, building_type, no_of_stories, flat_no, occupancy_status, heritage_id, pond_id, plot_area, covered_area, parking_area, common_area, createdby, createdtime, lastmodifiedby, lastmodifiedtime,status,characterofpremises,acre,bigha,cottah,chatak,sqmt,sqft,property_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?,?,?,?,?,?,?,?,?);
-      basePath: Property.buildingdetails
-      jsonMaps:
-
-      - jsonPath: $.Property.buildingdetails.id
-
-      - jsonPath: $.Property.tenantId
-      
-      - jsonPath: $.Property.assesseeNo
-      
-      - jsonPath: $.Property.acknowldgementNumber
-      
-      - jsonPath: $.Property.ward
-
-      - jsonPath: $.Property.buildingdetails.planCaseNo
-
-      - jsonPath: $.Property.buildingdetails.buildingType
-
-      - jsonPath: $.Property.buildingdetails.numberOfStories
-
-      - jsonPath: $.Property.buildingdetails.flatNo
-
-      - jsonPath: $.Property.buildingdetails.occupancyStatus
-
-      - jsonPath: $.Property.buildingdetails.heritageId
-
-      - jsonPath: $.Property.buildingdetails.pondId
-      
-      - jsonPath: $.Property.buildingdetails.plotArea
-      
-      - jsonPath: $.Property.buildingdetails.coveredArea
-      
-      - jsonPath: $.Property.buildingdetails.parkingArea
-      
-      - jsonPath: $.Property.buildingdetails.commonArea
-            
-      - jsonPath: $.Property.auditDetails.createdBy
-
-      - jsonPath: $.Property.auditDetails.lastModifiedBy
-      
-      - jsonPath: $.Property.status
-      
-      - jsonPath: $.Property.buildingdetails.characterofPremises
-      
-      - jsonPath: $.Property.buildingdetails.acre
-      
-      - jsonPath: $.Property.buildingdetails.bigha
-      
-      - jsonPath: $.Property.buildingdetails.cottah
-      
-      - jsonPath: $.Property.buildingdetails.chatak
-      
-      - jsonPath: $.Property.buildingdetails.sqMt
-      
-      - jsonPath: $.Property.buildingdetails.sqFt
-      
-      - jsonPath: $.Property.id
+      - jsonPath: $.Property.taxdetails.status
       
     - query: INSERT INTO pt_185notice(id, tenantid, assesee_no, av, effective_qtr, ward_no, notice_no, notice_issue_by, notice_issue_date, objection_issue_by, objection_issue_date, objection_reason, act_flag, payable_amt, accept_dt, accept_by, objection_enter_by, objection_enter_dt, objection_mediums, accept_remarks, tmp_assesee_no) VALUES (?,?,?,?,?,?,?,?,now(),?,?,?,?,?,?,?,?,?,?,?,?);
       basePath: Property.notice
@@ -352,49 +355,5 @@ serviceMaps:
       
       - jsonPath: $.Property.notice.acceptRemarks
       
-      - jsonPath: $.Property.tmpAssesseeNo
-      
-    - query: UPDATE pt_property_tmp SET assesee_no=?  WHERE tmp_assesee_no=? AND tenantId=?;
-      basePath: Property
-      jsonMaps:
-
-      - jsonPath: $.Property.assesseeNo
-
-      - jsonPath: $.Property.tmpAssesseeNo
-
-      - jsonPath: $.Property.tenantId
-      
-    - query: UPDATE pt_tax_details SET effective_qtr=?,proposed_qtr=?,av=?,comm_av=?,reasonable_rent=?,rate=?,comm_rate=?,hbt_amt=?,srg_amt=?,rebate_amt=?,qtrly_amt=?,payable_amt=?,net_amt=? WHERE tmp_assesee_no=? AND tenantId=?;
-      basePath: Property
-      jsonMaps:
-
-      - jsonPath: $.Property.taxdetails.effectiveQtr
-
-      - jsonPath: $.Property.taxdetails.proposedQtr
-
-      - jsonPath: $.Property.taxdetails.av
-      
-      - jsonPath: $.Property.taxdetails.commAv
-      
-      - jsonPath: $.Property.taxdetails.reasonableRent
-      
-      - jsonPath: $.Property.taxdetails.rate
-      
-      - jsonPath: $.Property.taxdetails.commRate
-      
-      - jsonPath: $.Property.taxdetails.hbtAmount
-      
-      - jsonPath: $.Property.taxdetails.surcharge
-      
-      - jsonPath: $.Property.taxdetails.rebateAmount
-      
-      - jsonPath: $.Property.taxdetails.quateryAmount
-      
-      - jsonPath: $.Property.taxdetails.paybleAmount
-      
-      - jsonPath: $.Property.taxdetails.netAmount
-      
-      - jsonPath: $.Property.tmpAssesseeNo
-
-      - jsonPath: $.Property.tenantId
+      - jsonPath: $.Property.acknowldgementNumber
       
