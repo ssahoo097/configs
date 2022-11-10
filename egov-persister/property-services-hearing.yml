@@ -1,0 +1,166 @@
+serviceMaps:
+  serviceName: property-services
+  mappings:
+  - version: 1.0
+    description: Persists property details in EG_PT_PROPERTY  table
+    fromTopic: update-property-notice
+    isTransaction: true
+    queryMaps:
+
+
+    - query: INSERT INTO pt_hearing (id,tenantid,hear_notice_no,assesee_no,proposed_qtr,gr_ir_flag,appd_flag,ward_no,division,reason_code,hearing_off,hearing_date,hearing_time,hearing_status,proposed_av,proposed_rate,proposed_comav,proposed_comrate,fixed_av,fixed_rate,fixed_comav,fixed_comrate,fixed_srg,fixed_hbt,fixed_reb,fixed_uid,fixed_date,no_of_adj,office_code,ver_no,complete,canc_uid,canc_date,physical_hear_not_no,existing_av,existing_rate,existing_comav,existing_qtr,existing_srg,fixed_qtrly_tax,sinedie,canc_reason,hearing_reason,hearing_section,createdby,createdtime,tmp_assesee_no) VALUES (?,?,?,?,?,?,?,?,?,?,?,now(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),?);
+      basePath: Property.hearing
+      jsonMaps:
+
+      - jsonPath: $.Property.hearing.id
+
+      - jsonPath: $.Property.tenantId
+      
+      - jsonPath: $.Property.hearing.hearingNoticeNo
+      
+      - jsonPath: $.Property.assesseeNo
+      
+      - jsonPath: $.Property.hearing.proposedQuarter
+
+      - jsonPath: $.Property.hearing.grIr
+
+      - jsonPath: $.Property.hearing.appFlag
+      
+      - jsonPath: $.Property.hearing.wardNo
+
+      - jsonPath: $.Property.hearing.division
+
+      - jsonPath: $.Property.hearing.reason
+
+      - jsonPath: $.Property.hearing.hearingOfficer
+      
+      - jsonPath: $.Property.hearing.hearingTime
+      
+      - jsonPath: $.Property.hearing.hearingStatus
+      
+      - jsonPath: $.Property.hearing.propAv
+      
+      - jsonPath: $.Property.hearing.propRate
+    
+      - jsonPath: $.Property.hearing.propCommAv
+
+      - jsonPath: $.Property.hearing.propCommRate
+
+      - jsonPath: $.Property.hearing.fixedav
+
+      - jsonPath: $.Property.hearing.fixedRate
+
+      - jsonPath: $.Property.hearing.fixedCommAv
+
+      - jsonPath: $.Property.hearing.fixedCommRate
+
+      - jsonPath: $.Property.hearing.fixedSurcharge
+      
+      - jsonPath: $.Property.hearing.fixedhbt
+
+      - jsonPath: $.Property.hearing.fixedreb
+      
+      - jsonPath: $.Property.hearing.fixedUid
+    
+      - jsonPath: $.Property.hearing.noOfAdj
+
+      - jsonPath: $.Property.hearing.officeCode
+
+      - jsonPath: $.Property.hearing.verNo
+
+      - jsonPath: $.Property.hearing.complete
+
+      - jsonPath: $.Property.hearing.cancUid
+
+      - jsonPath: $.Property.hearing.cancDate
+
+      - jsonPath: $.Property.hearing.physicalHearingNoticeNo
+      
+      - jsonPath: $.Property.hearing.existingAV
+      
+      - jsonPath: $.Property.hearing.existingRate
+      
+      - jsonPath: $.Property.hearing.existingCommAv
+      
+      - jsonPath: $.Property.hearing.existingQtr
+      
+      - jsonPath: $.Property.hearing.existingSrg
+    
+      - jsonPath: $.Property.hearing.fixedQtrlyTax
+
+      - jsonPath: $.Property.hearing.sinedie
+
+      - jsonPath: $.Property.hearing.cancReason
+
+      - jsonPath: $.Property.hearing.hearingReason
+
+      - jsonPath: $.Property.hearing.hearingSection  
+    
+      - jsonPath: $.Property.auditDetails.createdBy
+      
+      - jsonPath: $.Property.tmpAssesseeNo
+
+
+    - query: UPDATE pt_185notice SET  act_flag=?, accept_dt=now() WHERE tmp_assesee_no=? AND assesee_no=?;
+      basePath: Property.notice
+      jsonMaps:
+
+      - jsonPath: $.Property.notice.actFlag
+
+      - jsonPath: $.Property.tmpAssesseeNo
+
+      - jsonPath: $.Property.assesseeNo
+      
+    - query: UPDATE pt_tax_details SET  effective_qtr=?, av=?, comm_av=?, rate=?, comm_rate=?, hbt_amt=?, srg_amt=?, rebate_amt=?, qtrly_amt=? WHERE assesee_no=? AND status='ACTIVE';
+      basePath: Property.hearing
+      jsonMaps:
+
+      - jsonPath: $.Property.hearing.proposedQuarter
+
+      - jsonPath: $.Property.hearing.fixedav
+
+      - jsonPath: $.Property.hearing.fixedCommAv
+      
+      - jsonPath: $.Property.hearing.fixedRate
+     
+      - jsonPath: $.Property.hearing.fixedCommRate
+      
+      - jsonPath: $.Property.hearing.fixedhbt
+      
+      - jsonPath: $.Property.hearing.fixedSurcharge
+      
+      - jsonPath: $.Property.hearing.fixedreb
+      
+      - jsonPath: $.Property.hearing.fixedQtrlyTax
+      
+      - jsonPath: $.Property.assesseeNo
+      
+    - query:  DELETE FROM pt_property_tmp WHERE tmp_assesee_no=? and status='INWORKFLOW';
+      basePath: Property.notice
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+    - query:  DELETE FROM pt_tax_details WHERE tmp_assesee_no=? and status='INWORKFLOW';
+      basePath: Property.notice
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+    - query:  DELETE FROM pt_owner WHERE tmp_assesee_no=? and status='INWORKFLOW';
+      basePath: Property.notice
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+    - query:  DELETE FROM pt_building_details WHERE tmp_assesee_no=? and status='INWORKFLOW';
+      basePath: Property.notice
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+    - query:  DELETE FROM pt_registration_details WHERE tmp_assesee_no=? and status='INWORKFLOW';
+      basePath: Property.notice
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo

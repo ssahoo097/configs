@@ -255,7 +255,7 @@ serviceMaps:
       
       - jsonPath: $.Property.id
       
-    - query: INSERT INTO pt_tax_details(id, tenantid, assesee_no, tmp_assesee_no, ward_no, effective_qtr, proposed_qtr, av, comm_av, reasonable_rent, rate, comm_rate, hbt_amt, srg_amt, rebate_amt,qtrly_amt,payable_amt, net_amt,uaa_converted,uaa_saf_no,uncapped_tax,uncapped_hbt,capping_method, createdby, createdtime, lastmodifiedby, lastmodifiedtime,property_id,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?,?);
+    - query: INSERT INTO pt_tax_details(id, tenantid, assesee_no, tmp_assesee_no, ward_no, effective_qtr, proposed_qtr, av, comm_av, reasonable_rent, rate, comm_rate, hbt_amt, srg_amt, rebate_amt,qtrly_amt,payable_amt, net_amt,uaa_converted,uaa_saf_no,uncapped_tax,uncapped_hbt,capping_method, createdby, createdtime, lastmodifiedby, lastmodifiedtime,property_id,status,gross_amount) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?,?,?);
       basePath: Property.taxdetails
       jsonMaps:
 
@@ -312,6 +312,8 @@ serviceMaps:
       - jsonPath: $.Property.id
       
       - jsonPath: $.Property.taxdetails.status
+      
+      - jsonPath: $.Property.taxdetails.grossAmount
       
     - query: INSERT INTO pt_185notice(id, tenantid, assesee_no, av, effective_qtr, ward_no, notice_no, notice_issue_by, notice_issue_date, objection_issue_by, objection_issue_date, objection_reason, act_flag, payable_amt, accept_dt, accept_by, objection_enter_by, objection_enter_dt, objection_mediums, accept_remarks, tmp_assesee_no) VALUES (?,?,?,?,?,?,?,?,now(),?,?,?,?,?,?,?,?,?,?,?,?);
       basePath: Property.notice

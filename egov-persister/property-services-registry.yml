@@ -152,7 +152,7 @@ serviceMaps:
 
       - jsonPath: $.Property.auditDetails.lastModifiedBy
      
-    - query: INSERT INTO pt_tax_details(id, tenantid, assesee_no, tmp_assesee_no, ward_no, effective_qtr, proposed_qtr, av, comm_av, reasonable_rent, rate, comm_rate, hbt_amt, srg_amt, rebate_amt,qtrly_amt,payable_amt, net_amt,uaa_converted,uaa_saf_no,uncapped_tax,uncapped_hbt,capping_method, createdby, createdtime, lastmodifiedby, lastmodifiedtime,property_id,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?,?);
+    - query: INSERT INTO pt_tax_details(id, tenantid, assesee_no, tmp_assesee_no, ward_no, effective_qtr, proposed_qtr, av, comm_av, reasonable_rent, rate, comm_rate, hbt_amt, srg_amt, rebate_amt,qtrly_amt,payable_amt, net_amt,uaa_converted,uaa_saf_no,uncapped_tax,uncapped_hbt,capping_method, createdby, createdtime, lastmodifiedby, lastmodifiedtime,property_id,status,gross_amount) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?,?,?);
       basePath: Property.taxdetails
       jsonMaps:
 
@@ -209,6 +209,8 @@ serviceMaps:
       - jsonPath: $.Property.id
       
       - jsonPath: $.Property.status
+      
+      - jsonPath: $.Property.taxdetails.grossAmount
       
     - query: INSERT INTO pt_registration_details(id, tenantid, assesee_no, tmp_assesee_no, ward_no, dag_no, khatian_no, mouza_no, query_No, query_Year, deed_no, deed_year, location, ro, book, createdby, createdtime, lastmodifiedby, lastmodifiedtime,property_id,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?,?);
       basePath: Property.registrationDetails
@@ -364,7 +366,7 @@ serviceMaps:
 
       - jsonPath: $.Property.tenantId
       
-    - query: UPDATE pt_tax_details SET effective_qtr=?,proposed_qtr=?,av=?,comm_av=?,reasonable_rent=?,rate=?,comm_rate=?,hbt_amt=?,srg_amt=?,rebate_amt=?,qtrly_amt=?,payable_amt=?,net_amt=? WHERE tmp_assesee_no=? AND tenantId=?;
+    - query: UPDATE pt_tax_details SET effective_qtr=?,proposed_qtr=?,av=?,comm_av=?,reasonable_rent=?,rate=?,comm_rate=?,hbt_amt=?,srg_amt=?,rebate_amt=?,qtrly_amt=?,payable_amt=?,net_amt=?,gross_amount=? WHERE tmp_assesee_no=? AND tenantId=?;
       basePath: Property
       jsonMaps:
 
@@ -393,6 +395,8 @@ serviceMaps:
       - jsonPath: $.Property.taxdetails.paybleAmount
       
       - jsonPath: $.Property.taxdetails.netAmount
+      
+      - jsonPath: $.Property.taxdetails.grossAmount
       
       - jsonPath: $.Property.tmpAssesseeNo
 

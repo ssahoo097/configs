@@ -1,0 +1,110 @@
+serviceMaps:
+  serviceName: property-services
+  mappings:
+  - version: 1.0
+    description: Persists property details in EG_PT_PROPERTY  table
+    fromTopic: update-property-notice-accept
+    isTransaction: true
+    queryMaps:
+
+
+    - query: UPDATE pt_hearing SET fixed_av = ?,fixed_rate = ?,fixed_comav=?,fixed_comrate=?,fixed_srg=?,fixed_hbt=?,fixed_reb=?,hearing_status=? WHERE tmp_assesee_no=? AND assesee_no=?;
+      basePath: Property.hearing
+      jsonMaps:
+
+      - jsonPath: $.Property.hearing.fixedav
+      
+      - jsonPath: $.Property.hearing.fixedRate
+      
+      - jsonPath: $.Property.hearing.fixedCommAv
+
+      - jsonPath: $.Property.hearing.fixedCommRate
+
+      - jsonPath: $.Property.hearing.fixedSurcharge
+      
+      - jsonPath: $.Property.hearing.fixedhbt
+
+      - jsonPath: $.Property.hearing.fixedreb
+
+      - jsonPath: $.Property.hearing.hearingStatus
+      
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+      - jsonPath: $.Property.assesseeNo
+
+
+    - query: UPDATE pt_185notice SET  act_flag=?, accept_dt=now() WHERE tmp_assesee_no=? AND assesee_no=?;
+      basePath: Property.notice
+      jsonMaps:
+
+      - jsonPath: $.Property.notice.status
+
+      - jsonPath: $.Property.tmpAssesseeNo
+
+      - jsonPath: $.Property.assesseeNo
+      
+    - query: UPDATE pt_tax_details SET  effective_qtr=?, av=?, comm_av=?, reasonable_rent=?, rate=?, comm_rate=?, hbt_amt=?, srg_amt=?, rebate_amt=?,qtrly_amt=?,payable_amt=?,net_amt=?,gross_amount=?,uncapped_tax=?,uncapped_hbt=? WHERE assesee_no=? AND status='ACTIVE';
+      basePath: Property.taxdetails
+      jsonMaps:
+
+      - jsonPath: $.Property.taxdetails.effectiveQtr
+
+      - jsonPath: $.Property.taxdetails.av
+
+      - jsonPath: $.Property.taxdetails.commAv
+      
+      - jsonPath: $.Property.taxdetails.reasonableRent
+     
+      - jsonPath: $.Property.taxdetails.rate
+      
+      - jsonPath: $.Property.taxdetails.commRate
+      
+      - jsonPath: $.Property.taxdetails.hbtAmount
+      
+      - jsonPath: $.Property.taxdetails.surcharge
+      
+      - jsonPath: $.Property.taxdetails.rebateAmount
+      
+      - jsonPath: $.Property.taxdetails.quateryAmount
+      
+      - jsonPath: $.Property.taxdetails.paybleAmount
+      
+      - jsonPath: $.Property.taxdetails.netAmount
+      
+      - jsonPath: $.Property.taxdetails.grossAmount
+      
+      - jsonPath: $.Property.taxdetails.uncappedTax
+      
+      - jsonPath: $.Property.taxdetails.uncappedHbt
+      
+      - jsonPath: $.Property.assesseeNo
+      
+    - query:  DELETE FROM pt_property_tmp WHERE tmp_assesee_no=? and status='INWORKFLOW';
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+    - query:  DELETE FROM pt_tax_details WHERE tmp_assesee_no=? and status='INWORKFLOW';
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+    - query:  DELETE FROM pt_owner WHERE tmp_assesee_no=? and status='INWORKFLOW';
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+    - query:  DELETE FROM pt_building_details WHERE tmp_assesee_no=? and status='INWORKFLOW';
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+    - query:  DELETE FROM pt_registration_details WHERE tmp_assesee_no=? and status='INWORKFLOW';
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
