@@ -164,3 +164,9 @@ serviceMaps:
       jsonMaps:
 
       - jsonPath: $.Property.tmpAssesseeNo
+      
+    - query:  DELETE FROM pt_property_details WHERE tmp_assesee_no=? and status='INWORKFLOW';
+      basePath: Property.notice
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo

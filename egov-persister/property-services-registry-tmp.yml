@@ -359,3 +359,60 @@ serviceMaps:
       
       - jsonPath: $.Property.acknowldgementNumber
       
+    - query: INSERT INTO pt_property_details(id,tenantid,assesee_no,ward_no,natureofproperty,typeofuse,floor_no,flatno,buildingname,property_uses_type,occupierstatus,occupier_name,rentpm,covered_space,open_car_parking,covered_car_parking,open_terrace,common_space,roof,swimming_pool,room_dtl,createdby,createdtime,lastmodifiedby,lastmodifiedtime,tmp_assesee_no,property_id,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?,?,?);
+      basePath: Property.propertyDetails
+      jsonMaps:
+
+      - jsonPath: $.Property.propertyDetails.id
+
+      - jsonPath: $.Property.tenantId
+      
+      - jsonPath: $.Property.assesseeNo
+      
+      - jsonPath: $.Property.ward
+
+      - jsonPath: $.Property.propertyDetails.natureOfProperty
+
+      - jsonPath: $.Property.propertyDetails.typeOfUse
+      
+      - jsonPath: $.Property.propertyDetails.floorNo
+
+      - jsonPath: $.Property.propertyDetails.flatNo
+      
+      - jsonPath: $.Property.propertyDetails.buildingName
+
+      - jsonPath: $.Property.propertyDetails.natureOfUse
+
+      - jsonPath: $.Property.propertyDetails.occupierStatus
+      
+      - jsonPath: $.Property.propertyDetails.occupierName
+      
+      - jsonPath: $.Property.propertyDetails.pRent
+      
+      - jsonPath: $.Property.propertyDetails.coveredSpace
+      
+      - jsonPath: $.Property.propertyDetails.openCarParking
+    
+      - jsonPath: $.Property.propertyDetails.coveredCarParking
+      
+      - jsonPath: $.Property.propertyDetails.openTerrace
+      
+      - jsonPath: $.Property.propertyDetails.commonSpace
+      
+      - jsonPath: $.Property.propertyDetails.roof
+      
+      - jsonPath: $.Property.propertyDetails.swimingpool
+    
+      - jsonPath: $.Property.propertyDetails.finalRoomDetailsValue     
+      
+      - jsonPath: $.Property.auditDetails.createdBy
+
+      - jsonPath: $.Property.auditDetails.lastModifiedBy
+      
+      - jsonPath: $.Property.acknowldgementNumber
+  
+      - jsonPath: $.Property.id
+      
+      - jsonPath: $.Property.propertyDetails.status  
+    
+      
