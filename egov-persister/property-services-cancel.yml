@@ -1,0 +1,68 @@
+serviceMaps:
+  serviceName: property-services
+  mappings:
+  - version: 1.0
+    description: Persists property details in EG_PT_PROPERTY  table
+    fromTopic: cancel-property-notice
+    isTransaction: true
+    queryMaps:
+
+    - query: UPDATE pt_185notice SET  act_flag=?,accept_remarks=?, accept_dt=now() WHERE tmp_assesee_no=? AND assesee_no=?;
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.actFlag
+      
+      - jsonPath: $.Property.cancelReason
+
+      - jsonPath: $.Property.tmpAssesseeNo
+
+      - jsonPath: $.Property.assesseeNo
+      
+    - query:  DELETE FROM pt_property_tmp WHERE tmp_assesee_no=? and assesee_no=? and status='INWORKFLOW';
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+      - jsonPath: $.Property.assesseeNo
+      
+    - query:  DELETE FROM pt_tax_details WHERE tmp_assesee_no=? and assesee_no=? and status='INWORKFLOW';
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+      - jsonPath: $.Property.assesseeNo
+      
+    - query:  DELETE FROM pt_owner WHERE tmp_assesee_no=? and assesee_no=? and status='INWORKFLOW';
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+      - jsonPath: $.Property.assesseeNo
+      
+    - query:  DELETE FROM pt_building_details WHERE tmp_assesee_no=? and assesee_no=? and status='INWORKFLOW';
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+      - jsonPath: $.Property.assesseeNo
+      
+    - query:  DELETE FROM pt_registration_details WHERE tmp_assesee_no=? and assesee_no=? and status='INWORKFLOW';
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+      - jsonPath: $.Property.assesseeNo
+      
+    - query:  DELETE FROM pt_property_details WHERE tmp_assesee_no=? and assesee_no=? and status='INWORKFLOW';
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.tmpAssesseeNo
+      
+      - jsonPath: $.Property.assesseeNo
