@@ -79,6 +79,14 @@ serviceMaps:
       
       - jsonPath: $.Property.assesseeNo
       
+    - query: UPDATE pt_property_mst SET  effective_qtr=? WHERE assesee_no=? and status='ACTIVE';
+      basePath: Property.notice
+      jsonMaps:
+
+      - jsonPath: $.Property.taxdetails.effectiveQtr
+
+      - jsonPath: $.Property.assesseeNo
+      
     - query:  DELETE FROM pt_property_tmp WHERE tmp_assesee_no=? and status='INWORKFLOW';
       basePath: Property
       jsonMaps:

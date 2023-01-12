@@ -7,7 +7,7 @@ serviceMaps:
     isTransaction: true
     queryMaps:
 
-    - query: INSERT INTO pt_hearing(id, tenantid, assesee_no,hear_notice_no,proposed_qtr, gr_ir_flag, appd_flag, ward_no, division, reason_code, hearing_off, hearing_date, hearing_time, hearing_status, proposed_av, proposed_rate,proposed_comav,proposed_comrate, fixed_av, fixed_rate,fixed_comav,fixed_comrate,fixed_srg,fixed_hbt,fixed_reb,fixed_uid,fixed_date,no_of_adj,office_code,ver_no,complete,canc_uid,canc_date,physical_hear_not_no,existing_av,existing_rate,existing_comav,existing_qtr,existing_srg,fixed_qtrly_tax,sinedie,canc_reason,hearing_reason,hearing_section,createdby, createdtime, lastmodifiedby, lastmodifiedtime,propertyId) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?);
+    - query: INSERT INTO pt_hearing(id, tenantid, assesee_no,hearing_not_no,proposed_qtr, gr_ir_flag, appd_flag, ward_no, division, reason_code, hearing_off, hearing_date, hearing_time, hearing_status, proposed_av, proposed_rate,proposed_comav,proposed_comrate, fixed_av, fixed_rate,fixed_comav,fixed_comrate,fixed_srg,fixed_hbt,fixed_reb,fixed_uid,fixed_date,no_of_adj,office_code,ver_no,complete,canc_id,canc_date,physical_hear_not_no,existing_av,existing_rate,existing_comav,existing_qtr,existing_srg,fixed_qtrly_tax,sinedie,canc_reason,hearing_reason,hearing_section,createdby, createdtime, lastmodifiedby, lastmodifiedtime,propertyId) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,NOW(),?);
       basePath: Property.hearing.*
       jsonMaps:
 
